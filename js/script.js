@@ -17,6 +17,10 @@ divMessage.innerHTML = `<h3>I numeri random da memorizzare sono:</h3>
                         <h2>${numbers.join(', ')}</h2>
                         <h3> Hai 30 secondi per memorizzarli.</h3>`;
 
+//dopo 30 secondi i numeri spariscono
+setTimeout(function () {
+    divMessage.innerHTML = '';
+}, 30000);
 
 //funzione per creare numeri random nell'array blackList
 function getRandomIntInclusive(min, max) {
