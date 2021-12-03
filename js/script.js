@@ -20,6 +20,44 @@ divMessage.innerHTML = `<h3>I numeri random da memorizzare sono:</h3>
 //dopo 30 secondi i numeri spariscono
 setTimeout(function () {
     divMessage.innerHTML = '';
+
+    //dopo 200ms esce il prompt che chiede all'utente di inserire i numeri
+    setTimeout(function () {
+
+        //array numeri inseriti dall'utente
+        let numbersUser = [];
+
+        //contatore di numeri corretti
+        let counter = 0;
+
+        //chiedo all'utente di inserire 5 numeri
+        for (let index = 0; index < numbers.length; index++) {
+            let number = parseInt(prompt(`Dovrai inserire i 5 numeri random che hai memorizzato. Inserisci il ${index + 1}°`));
+
+            //controllo che sia un numero
+            while (isNaN(number)) {
+                number = parseInt(prompt(`Dovrai inserire i 5 numeri random che hai memorizzato. Inserisci il ${index + 1}°`));
+            }
+            // //pusho i numeri nell'array
+            numbersUser.push(number);
+
+            //se il numero dell'utente è nell'array originario, il contatore sale
+            if (numbers.includes(number)) {
+                counter += 1;
+            }
+        }
+        console.log(numbersUser);
+        console.log('indovinati ' + counter + ' numeri');
+
+        //mostro il messaggio all'utente
+        if (counter == 0) {
+            divMessage.innerHTML = `<h3>Oh no, non hai indovinato nessun numero.</h3>`;
+        } else if (counter == 5) {
+            divMessage.innerHTML = `<h3>Complimenti! Hai indovinato tutti i numeri.</h3>`;
+        } else {
+            divMessage.innerHTML = `<h3>Complimenti! Hai indovinato ${counter} numeri.</h3>`;
+        }
+    }, 200);
 }, 30000);
 
 //funzione per creare numeri random nell'array blackList
