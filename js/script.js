@@ -30,6 +30,9 @@ setTimeout(function () {
         //contatore di numeri corretti
         let counter = 0;
 
+        //numeri indovinati
+        let numbersRight = [];
+
         //chiedo all'utente di inserire 5 numeri
         for (let index = 0; index < numbers.length; index++) {
             let number = parseInt(prompt(`Dovrai inserire i 5 numeri random che hai memorizzato. Inserisci il ${index + 1}°`));
@@ -44,6 +47,7 @@ setTimeout(function () {
             //se il numero dell'utente è nell'array originario, il contatore sale
             if (numbers.includes(number)) {
                 counter += 1;
+                numbersRight.push(number);
             }
         }
         console.log(numbersUser);
@@ -59,17 +63,17 @@ setTimeout(function () {
             case 1:
                 divMessage.innerHTML = `<h3>I numeri random da memorizzare erano: ${numbers.join(' - ')}</h3>
                                     <h3>I numeri inseriti dall'utente erano: ${numbersUser.join(' - ')}</h3>
-                                    <h3>Complimenti! Hai indovinato ${counter} numero.</h3>`;
+                                    <h3>Complimenti! Hai indovinato ${counter} numero: ${numbersRight}</h3>`;
                 break;
             case 5:
                 divMessage.innerHTML = `<h3>I numeri random da memorizzare erano: ${numbers.join(' - ')}</h3>
                                     <h3>I numeri inseriti dall'utente erano: ${numbersUser.join(' - ')}</h3>
-                                    <h3>Complimenti! Hai indovinato tutti i numeri.</h3>`;
+                                    <h3>Complimenti! Hai indovinato tutti i numeri: ${numbersRight.join(' - ')}</h3>`;
                 break;
             default:
                 divMessage.innerHTML = `<h3>I numeri random da memorizzare erano: ${numbers.join(' - ')}</h3>
                                     <h3>I numeri inseriti dall'utente erano: ${numbersUser.join(' - ')}</h3>
-                                    <h3>Complimenti! Hai indovinato ${counter} numeri.</h3>`;
+                                    <h3>Complimenti! Hai indovinato ${counter} numeri: ${numbersRight.join(' - ')}</h3>`;
                 break;
         }
     }, 200);
