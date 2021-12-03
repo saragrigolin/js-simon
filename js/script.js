@@ -13,17 +13,46 @@ let numbers = getRandomIntInclusive(1, 100);
 console.log(numbers);
 
 divMessage = document.querySelector('.message');
-divMessage.innerHTML = `<h3>I numeri random da memorizzare sono:</h3>
+
+let seconds = 5;
+setInterval(function () {
+    if (seconds > 0) {
+        console.log(seconds);
+        seconds -= 1;
+
+        divMessage.innerHTML = `<h3>I numeri random da memorizzare sono:</h3>
                         <h2>${numbers.join(' - ')}</h2>
-                        <h3> Hai 30 secondi per memorizzarli.</h3>`;
+                        <h3>Mancano ${seconds +1} secondi.`;
+    } else {
+        clearInterval();
+    }
+}, 1000);
 
 //dopo 30 secondi i numeri spariscono
 setTimeout(function () {
     divMessage.innerHTML = '';
 
+    //contatore secondi
+    let seconds = 30;
+    setInterval( function(){
+        if (seconds > 0){
+            console.log(seconds);
+            seconds -= 1;
+            divMessage.innerHTML = `<h3>Al termine del countdown inserisci i numeri memorizzati.</h3>
+                                    <h3>Mancano ${seconds} secondi.</h3>`
+        } else {
+            clearInterval();
+        }
+    }, 1000);
+}, 6000);
+
+setTimeout(function () {
     //dopo 200ms esce il prompt che chiede all'utente di inserire i numeri
+    divMessage.innerHTML = '';
+
     setTimeout(function () {
 
+        divMessage.innerHTML = '';
         //array numeri inseriti dall'utente
         let numbersUser = [];
 
@@ -45,7 +74,7 @@ setTimeout(function () {
             numbersUser.push(number);
 
             //se il numero dell'utente è nell'array originario, il contatore sale
-            if (numbers.includes(number)) {
+            if (numbers.includes(number) && !(numbersRight.includes(number))) {
                 counter += 1;
                 numbersRight.push(number);
             }
@@ -77,7 +106,7 @@ setTimeout(function () {
                 break;
         }
     }, 200);
-}, 30000);
+}, 36000);
 
 //funzione per creare numeri random nell'array blackList
 function getRandomIntInclusive(min, max) {
