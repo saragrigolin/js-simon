@@ -14,7 +14,7 @@ console.log(numbers);
 
 divMessage = document.querySelector('.message');
 divMessage.innerHTML = `<h3>I numeri random da memorizzare sono:</h3>
-                        <h2>${numbers.join(', ')}</h2>
+                        <h2>${numbers.join(' - ')}</h2>
                         <h3> Hai 30 secondi per memorizzarli.</h3>`;
 
 //dopo 30 secondi i numeri spariscono
@@ -50,12 +50,27 @@ setTimeout(function () {
         console.log('indovinati ' + counter + ' numeri');
 
         //mostro il messaggio all'utente
-        if (counter == 0) {
-            divMessage.innerHTML = `<h3>Oh no, non hai indovinato nessun numero.</h3>`;
-        } else if (counter == 5) {
-            divMessage.innerHTML = `<h3>Complimenti! Hai indovinato tutti i numeri.</h3>`;
-        } else {
-            divMessage.innerHTML = `<h3>Complimenti! Hai indovinato ${counter} numeri.</h3>`;
+        switch (counter) {
+            case 0:
+                divMessage.innerHTML = `<h3>I numeri random da memorizzare erano: ${numbers.join(' - ')}</h3>
+                                    <h3>I numeri inseriti dall'utente erano: ${numbersUser.join(' - ')}</h3>
+                                    <h3>Oh no, non hai indovinato nessun numero.</h3>`;
+                break;
+            case 1:
+                divMessage.innerHTML = `<h3>I numeri random da memorizzare erano: ${numbers.join(' - ')}</h3>
+                                    <h3>I numeri inseriti dall'utente erano: ${numbersUser.join(' - ')}</h3>
+                                    <h3>Complimenti! Hai indovinato ${counter} numero.</h3>`;
+                break;
+            case 5:
+                divMessage.innerHTML = `<h3>I numeri random da memorizzare erano: ${numbers.join(' - ')}</h3>
+                                    <h3>I numeri inseriti dall'utente erano: ${numbersUser.join(' - ')}</h3>
+                                    <h3>Complimenti! Hai indovinato tutti i numeri.</h3>`;
+                break;
+            default:
+                divMessage.innerHTML = `<h3>I numeri random da memorizzare erano: ${numbers.join(' - ')}</h3>
+                                    <h3>I numeri inseriti dall'utente erano: ${numbersUser.join(' - ')}</h3>
+                                    <h3>Complimenti! Hai indovinato ${counter} numeri.</h3>`;
+                break;
         }
     }, 200);
 }, 30000);
